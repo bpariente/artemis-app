@@ -12,12 +12,14 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Slf4j
-@Component("ibanChecksumWorker")
+@Component("checkIbanWorker")
 public class CheckIBAN implements Worker {
 
     private static final String IBAN_INPUT_FIELD = "iban";
     private static final String ENTITY_OUTPUT_FIELD = "entity";
     private static final String EXTERNAL_ENTITY_OUTPUT_VALUE = "";
+
+    private static final String WORKER_TASK_DEF_NAME = "worker_task_check_iban";
 
 
     @Autowired
@@ -25,7 +27,7 @@ public class CheckIBAN implements Worker {
 
     @Override
     public String getTaskDefName() {
-        return "worker_task";
+        return WORKER_TASK_DEF_NAME;
     }
 
     @Override
