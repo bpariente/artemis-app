@@ -14,12 +14,12 @@ import javax.annotation.PostConstruct;
 public class ConductorManager {
 
     @Autowired
-    @Qualifier("filterCustomerByAddressesWorker")
-    private Worker filterCustomerByAddresses;
+    @Qualifier("filterCustomersByAddressesWorker")
+    private Worker filterCustomersByAddresses;
 
     @Autowired
-    @Qualifier("ibanChecksumWorker")
-    private Worker ibanChecksum;
+    @Qualifier("checkIbanWorker")
+    private Worker checkIban;
 
 
     @Value("${conductor.api.url}")
@@ -33,7 +33,7 @@ public class ConductorManager {
 
         //Create WorkflowTaskCoordinator
         WorkflowTaskCoordinator.Builder builder = new WorkflowTaskCoordinator.Builder();
-        WorkflowTaskCoordinator coordinator = builder.withWorkers(ibanChecksum, filterCustomerByAddresses).withThreadCount(1).withTaskClient(taskClient).build();
+        WorkflowTaskCoordinator coordinator = builder.withWorkers(checkIban, filterCustomersByAddresses).withThreadCount(1).withTaskClient(taskClient).build();
 
         //Start for polling and execution of the tasks
         coordinator.init();

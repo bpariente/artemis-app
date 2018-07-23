@@ -5,6 +5,7 @@ import com.netflix.conductor.client.worker.Worker;
 import com.netflix.conductor.common.metadata.tasks.Task;
 import com.netflix.conductor.common.metadata.tasks.TaskResult;
 import com.stratio.bawag.domain.Customer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +14,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component("filterCustomerByAddressesWorker")
-public class FilterCustomerByAddresses implements Worker {
+@Slf4j
+@Component("filterCustomersByAddressesWorker")
+public class FilterCustomersByAddresses implements Worker {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -25,9 +27,11 @@ public class FilterCustomerByAddresses implements Worker {
 
     private static final String MATCHING_CUSTOMERS_OUTPUT_FIELD = "matchingCustomers";
 
+    private static final String WORKER_TASK_DEF_NAME = "worker_task_filter_customers_by_addresses";
+
     @Override
     public String getTaskDefName() {
-        return "worker_task";
+        return WORKER_TASK_DEF_NAME;
     }
 
     @Override
