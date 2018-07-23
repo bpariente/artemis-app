@@ -1,0 +1,11 @@
+conductor:
+  api:
+    url: http://conductor-api.conductor.marathon.mesos:8080/api/
+---
+
+spring:
+    profiles: local
+
+conductor:
+  api:
+    url: http://localhost:8080/api/
