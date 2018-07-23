@@ -27,9 +27,11 @@ public class FilterCustomersByAddresses implements Worker {
 
     private static final String MATCHING_CUSTOMERS_OUTPUT_FIELD = "matchingCustomers";
 
+    private static final String WORKER_TASK_DEF_NAME = "worker_task_filter_customers_by_addresses";
+
     @Override
     public String getTaskDefName() {
-        return "worker_task_filter_customers_by_addresses";
+        return WORKER_TASK_DEF_NAME;
     }
 
     @Override
